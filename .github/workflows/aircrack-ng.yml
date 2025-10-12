@@ -18,8 +18,8 @@ jobs:
     - name: Download files
       run: |
         apt update
-        apt install aircrack-ng -y
-        # apt install hashcat -y
+        # apt install aircrack-ng -y
+        apt install hashcat -y
         mkdir -p downloads
         wget -O downloads/capture.hccapx 
         wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
@@ -27,8 +27,8 @@ jobs:
     - name: Cracking hccapx file
       run: |
         cd downloads
-        # hashcat -m 2500 -a 0 -w 3 -O capture.hccapx passwords.txt --outfile-format 2 -o key.log
-        aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
+        hashcat -m 2500 -a 0 -w 3 -O capture.hccapx passwords.txt --outfile-format 2 -o key.log
+        # aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
       id: get_tag
