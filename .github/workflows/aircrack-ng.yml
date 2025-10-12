@@ -18,18 +18,16 @@ jobs:
     - name: Download files
       run: |
         sudo apt update
-        # apt install aircrack-ng -y
-        sudo apt install hashcat -y
+        sudo apt install aircrack-ng -y
         mkdir -p downloads
-        wget -O downloads/capture.hc22000 https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2-psk.hc22000
+        wget -O downloads/capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
         wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
         # wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
         
     - name: Cracking hccapx file
       run: |
         cd downloads
-        hashcat -m 22000 -a 0 -w 3 -O capture.hc22000 passwords.txt --outfile-format 2 -o key.log
-        # aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
+        aircrack-ng -w passwords.txt capture.cap -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
       id: get_tag
