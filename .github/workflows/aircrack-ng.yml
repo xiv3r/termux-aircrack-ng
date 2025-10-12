@@ -28,7 +28,7 @@ jobs:
     - name: Cracking hccapx file
       run: |
         cd downloads
-        hashcat -m 22000 -a 0 -w 3 -O capture.hccapx passwords.txt --outfile-format 2 -o key.log
+        hashcat -m 22000 -a 0 capture.hccapx passwords.txt --outfile-format 2 -o key.log
         # aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
