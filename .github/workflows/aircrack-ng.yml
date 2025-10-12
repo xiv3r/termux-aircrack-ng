@@ -26,7 +26,7 @@ jobs:
     - name: Cracking hccapx file
       run: |
         cd downloads
-        aircrack-ng -w rockyou.txt capture.hccapx | grep "KEY FOUND" > results.log
+        aircrack-ng -w rockyou.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
       id: get_tag
