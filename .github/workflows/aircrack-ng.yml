@@ -1,4 +1,4 @@
-name: crack hccapx 
+name: Aircrack-ng
 
 on:
   workflow_dispatch:
