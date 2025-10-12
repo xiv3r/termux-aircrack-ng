@@ -17,9 +17,9 @@ jobs:
 
     - name: Download files
       run: |
-        apt update
+        sudo apt update
         # apt install aircrack-ng -y
-        apt install hashcat -y
+        sudo apt install hashcat -y
         mkdir -p downloads
         wget -O downloads/capture.hccapx https://github.com/xiv3r/termux-aircrack-ng/blob/main/.github/workflows/Capture-89042.hccapx
         wget -O downloads/passwords.txt https://github.com/xiv3r/termux-aircrack-ng/blob/main/.github/workflows/passwords.txt
