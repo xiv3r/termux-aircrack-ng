@@ -20,7 +20,7 @@ jobs:
         sudo apt update
         sudo apt install hashcat -y
         mkdir -p downloads
-        wget -O downloads/capture.hc22000 https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2-psk.hc22000
+        wget -O downloads/capture.hc22000 https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2-eapol.hc22000
         wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
         # wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
         
