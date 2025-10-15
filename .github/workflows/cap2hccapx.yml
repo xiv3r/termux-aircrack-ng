@@ -1,4 +1,4 @@
-name: convert cap to hccapx
+name: Convert CAP to HCCAPX
 
 on:
   workflow_dispatch:
