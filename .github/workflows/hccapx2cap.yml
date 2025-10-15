@@ -1,4 +1,4 @@
-name: convert hccapx to cap
+name: convert cap to hccapx
 
 on:
   workflow_dispatch:
@@ -18,17 +18,14 @@ jobs:
     - name: Download files
       run: |
         sudo apt update
-        sudo apt install git wget p7zip-full -y
+        sudo apt install wget hcxtools -y
         mkdir -p downloads
         
-    - name: Converting .hccapx to .cap file
+    - name: Converting .cap to .hccapx
       run: |
         cd downloads
-        wget https://github.com/hashcat/hashcat-utils/releases/download/v1.9/hashcat-utils-1.9.7z && \
-        7z x hashcat-utils-1.9.7z && \
-        cd hashcat-utils-1.9 && \
-        wget -O capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
-        ./hccapx2cap capture.hccapx capture.cap
+        wget -O capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
+        hcxpcapngtool -o capture.hccapx capture.cap
 
     - name: Determine release tag
       id: get_tag
@@ -84,6 +81,6 @@ jobs:
       with:
         tag_name: ${{ steps.get_tag.outputs.tag_name }}
         files: |
-          downloads/hashcat-utils-1.9/*.cap
+          downloads/*.hccapx 
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
