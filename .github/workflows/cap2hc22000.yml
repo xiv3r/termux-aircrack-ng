@@ -24,7 +24,7 @@ jobs:
         
     - name: Converting .cap to .hc22000
       run: |
-        wget -O capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
+        wget -O capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2-psk-linksys.cap
         hcxpcapngtool -o capture.hc22000 capture.cap
 
     - name: Determine release tag
