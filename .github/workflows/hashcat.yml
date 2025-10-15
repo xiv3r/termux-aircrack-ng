@@ -19,14 +19,17 @@ jobs:
       run: |
         sudo apt update
         sudo apt install hashcat -y
-        mkdir -p downloads
-        wget -O downloads/capture.hc22000 https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa-psk.hc22000
-        wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
-        # wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
-        
-    - name: Cracking hccapx file
+
+    - name: Download files
       run: |
+        mkdir -p downloads
         cd downloads
+        wget -O capture.hc22000 https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa-psk.hc22000
+        wget -O passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
+        # wget -O rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
+        
+    - name: Cracking .hc22000 file
+      run: |
         hashcat -m 22000 -a 0 -w 3 -O capture.hc22000 passwords.txt --outfile-format 2 -o key.log
         
     - name: Determine release tag
