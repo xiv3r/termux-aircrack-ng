@@ -1,4 +1,4 @@
-name: Aircrack-ng
+name: Aircrack-NG
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
         wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
         # wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
         
-    - name: Cracking hccapx file
+    - name: Cracking .cap file
       run: |
         cd downloads
         aircrack-ng -w passwords.txt capture.cap -l key.log | grep "KEY FOUND" > results.log
