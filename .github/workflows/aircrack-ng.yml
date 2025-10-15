@@ -17,7 +17,7 @@ jobs:
 
     - name: CPU Perf
       run: |
-        echo performance | sudo tee $(pwd)/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+        sudo echo performance | sudo tee ~/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
     - name: Download files
       run: |
