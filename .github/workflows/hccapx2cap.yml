@@ -1,4 +1,4 @@
-name: convert cap to hccapx
+name: convert hccapx to cap
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
         sudo apt install wget hcxtools -y
         mkdir -p downloads
         
-    - name: Converting .cap to .hccapx
+    - name: Converting .hccapx to .cap
       run: |
         cd downloads
         wget -O capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
