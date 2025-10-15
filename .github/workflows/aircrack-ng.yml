@@ -15,6 +15,10 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: CPU Perf
+      run: |
+        echo performance | sudo tee $(pwd)/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+
     - name: Download files
       run: |
         sudo apt update
