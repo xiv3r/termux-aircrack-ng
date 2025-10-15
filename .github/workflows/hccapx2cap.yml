@@ -27,7 +27,7 @@ jobs:
         wget https://github.com/hashcat/hashcat-utils/releases/download/v1.9/hashcat-utils-1.9.7z && \
         7z x hashcat-utils-1.9.7z && \
         cd hashcat-utils-1.9 && \
-        wget -O downloads/capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
+        wget -O capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
         ./hccapx2cap capture.hccapx capture.cap
 
     - name: Determine release tag
