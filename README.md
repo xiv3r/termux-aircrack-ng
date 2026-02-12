@@ -17,7 +17,7 @@ aircrack-ng -S
 # Using SEGFAULT server
 - token
 ```
-ssh -o "SetEnv SECRET=LrwYROqSMNzQMwplHiAwICba" root@lsd.segfault.net
+ssh -o "SetEnv SECRET=OOAAyyepsqVgDolngwBSIJyp" root@lsd.segfault.net
 ```
 - password
 ```
