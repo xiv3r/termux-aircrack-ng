@@ -1,4 +1,4 @@
-name: Aircrack-NG
+name: Aircrack-ng
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     
 jobs:
   download-and-release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     
     steps:
     - name: Checkout repository
@@ -20,14 +20,18 @@ jobs:
         sudo apt update
         sudo apt install aircrack-ng -y
         mkdir -p downloads
-        wget -O downloads/capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
+        
+        wget -O downloads/capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/DITO-capture.hccapx
         wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
+        
+        # TEST
+        # wget -O downloads/capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
         # wget -O downloads/rockyou.txt https://huggingface.co/datasets/Canstralian/Wordlists/resolve/3a6334a4540d446d8f91f4c73401cafbbfe55d22/rockyou.txt?download=true
         
     - name: Cracking .cap file
       run: |
         cd downloads
-        aircrack-ng -w passwords.txt capture.cap -l key.log | grep "KEY FOUND" > results.log
+        aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
       id: get_tag
@@ -79,7 +83,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload files to existing release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.get_tag.outputs.tag_name }}
         files: |
