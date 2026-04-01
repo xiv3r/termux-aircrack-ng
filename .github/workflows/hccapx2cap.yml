@@ -24,7 +24,7 @@ jobs:
         
     - name: Converting .hccapx to .cap
       run: |
-        wget -O capture.hccapx https://github.com/xiv3r/termux-aircrack-ng/raw/refs/heads/main/samples/DITO-capture.hccapx
+        wget -O capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
         hcxpcapngtool -o capture.cap capture.hccapx
 
     - name: Determine release tag
