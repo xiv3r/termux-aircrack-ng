@@ -20,9 +20,9 @@ jobs:
         sudo apt update
         sudo apt install aircrack-ng -y
         mkdir -p downloads
-        
-        wget -O downloads/capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/DITO-capture.hccapx
-        wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
+
+         wget -O downloads/capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
+         wget -O downloads/passwords.txt https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt
         
         # TEST
         # wget -O downloads/capture.cap https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/wpa2.eapol.cap
@@ -31,7 +31,7 @@ jobs:
     - name: Cracking .cap file
       run: |
         cd downloads
-        aircrack-ng -w passwords.txt capture.hccapx -l key.log | grep "KEY FOUND" > results.log
+        aircrack-ng -w passwords.txt capture.cap -l key.log | grep "KEY FOUND" > results.log
         
     - name: Determine release tag
       id: get_tag
