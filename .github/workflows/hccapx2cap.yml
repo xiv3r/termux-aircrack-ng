@@ -24,7 +24,7 @@ jobs:
         
     - name: Converting .hccapx to .cap
       run: |
-        wget -O capture.hccapx https://raw.githubusercontent.com/xiv3r/termux-aircrack-ng/refs/heads/main/samples/capture.hccapx
+        wget -O capture.hccapx https://github.com/xiv3r/termux-aircrack-ng/raw/refs/heads/main/samples/DITO-capture.hccapx
         hcxpcapngtool -o capture.cap capture.hccapx
 
     - name: Determine release tag
@@ -77,7 +77,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload files to existing release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.get_tag.outputs.tag_name }}
         files: |
